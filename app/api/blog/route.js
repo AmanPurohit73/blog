@@ -2,7 +2,8 @@ import { ConnectDB } from "@/lib/config/db";
 import blogModel from "@/lib/models/blogModel";
 const { NextResponse } = require("next/server");
 import { writeFile } from "fs/promises";
-const fs = require('fs')
+import { unlink } from "fs/promises"; // Use promises version
+const fs = require("fs");
 
 const loadDB = async () => {
   await ConnectDB();
@@ -46,12 +47,28 @@ export async function POST(request) {
   return NextResponse.json({ success: true, msg: "Blog Added" });
 }
 
+export async function DELETE(request) {
+  try {
+    const id = await request.nextUrl.searchParams.get("id");
+    const blog = await blogModel.findById(id);
 
-export async function DELETE(request){
-  const id = await request.nextUrl.searchParams.get('id')
-  const blog = await blogModel.findById(id)
-  fs.unlink(`./public${blog.image}`,() => {})
-  await blogModel.findByIdAndDelete(id)
-  return NextResponse.json({msg:"Blog Deleted"})
+    if (blog && blog.image) {
+      // Use promises version and proper error handling
+      try {
+        await unlink(`./public${blog.image}`);
+      } catch (fileError) {
+        console.log("File deletion error:", fileError);
+        // Continue with database deletion even if file deletion fails
+      }
+    }
 
+    await blogModel.findByIdAndDelete(id);
+    return NextResponse.json({ msg: "Blog Deleted" });
+  } catch (error) {
+    console.error("Delete error:", error);
+    return NextResponse.json(
+      { error: "Failed to delete blog" },
+      { status: 500 }
+    );
+  }
 }
