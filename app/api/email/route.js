@@ -14,7 +14,7 @@ export async function POST(request) {
     email: `${formData.get("email")}`,
   };
   await EmailModel.create(emailData);
-  return NextRequest.json({ success: true, msg: "Email Subscribed" });
+  return NextResponse.json({ success: true, msg: "Email Subscribed" });
 }
 
 

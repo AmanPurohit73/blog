@@ -69,7 +69,7 @@ const page = () => {
         <input onChange={(e)=>setImage(e.target.files[0])} type="file" id='image' hidden required />
 
         <p className='text-xl mt-4'>Blog Title</p>
-        <input name='title' onChange={onChangeHandler} vallue={data.title} type="text" placeholder='Type Here' required className='w-full sm:w-[500px] mt-4 px-4 py-3 border '/>
+        <input name='title' onChange={onChangeHandler} value={data.title} type="text" placeholder='Type Here' required className='w-full sm:w-[500px] mt-4 px-4 py-3 border '/>
 
 
         <p className='text-xl mt-4'>Blog Description</p>

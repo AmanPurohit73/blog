@@ -22,7 +22,7 @@ const blogDate = new Date(date)
             {title?title:"No Title"}
         </td>
         <td className='px-6 py-4'>
-            {blogDate.toDateString}
+            {blogDate.toDateString()}
         </td>
         <td onClick={()=>deleteBlog(mongoId)} className='px-6 py-4 cursor-pointer'>
             x
