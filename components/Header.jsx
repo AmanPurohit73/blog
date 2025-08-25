@@ -1,6 +1,7 @@
 import { assets } from "@/assets/assets";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -30,10 +31,15 @@ const Header = () => {
           className="w-[130px] sm:w-auto"
         />
 
-        <button className="flex items-center gap-2 font-medium py-1 px-3 sm:py-3 sm:px-6 border border-solid border-b-black shadow-[-7px_7px_0px_#000000]">
-          Get Started
-          <Image src={assets.arrow} alt="" />
-        </button>
+        
+          <Link
+            href="/admin/addProduct"
+            className="flex items-center gap-2 font-medium py-1 px-3 sm:py-3 sm:px-6 border border-solid border-b-black shadow-[-7px_7px_0px_#000000]"
+          >
+            Get Started
+            <Image src={assets.arrow} alt="" />
+          </Link>
+        
       </div>
 
       <div className="text-center my-8 ">
