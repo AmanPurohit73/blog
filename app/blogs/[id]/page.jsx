@@ -10,13 +10,13 @@ import React, { useEffect, useState } from "react";
 const page = ({ params }) => {
   const [data, setData] = useState(null);
 
-  const fetchBlogData = async() => {
-    const response = await axios.get('/api/blog',{
-      params:{
-        id:params.id
-      }
-    })
-    setData(response.data)
+  const fetchBlogData = async () => {
+    const response = await axios.get("/api/blog", {
+      params: {
+        id: params.id,
+      },
+    });
+    setData(response.data);
   };
 
   useEffect(() => {
@@ -68,21 +68,10 @@ const page = ({ params }) => {
           height={720}
         />
 
-        
-
-
-        <div className="blog-content"
-        dangerouslySetInnerHTML={{__html:data.description}}>
-
-        </div>
-
-        
-        
-        
-
-       
-        
-        
+        <div
+          className="blog-content"
+          dangerouslySetInnerHTML={{ __html: data.description }}
+        ></div>
 
         <div className="my-24">
           <p className="text-black font-semibold my-4">

@@ -54,4 +54,4 @@ export async function DELETE(request){
   await blogModel.findByIdAndDelete(id)
   return NextResponse.json({msg:"Blog Deleted"})
 
-}ger
+}
